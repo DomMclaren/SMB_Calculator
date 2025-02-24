@@ -73,7 +73,7 @@ const StyledInputRoot = styled("div")(
   justify-content: center;
   align-items: center;
 
-  max-width: 35%;
+  max-width: 45%;
   margin:0;
   pagging:0;
 `
