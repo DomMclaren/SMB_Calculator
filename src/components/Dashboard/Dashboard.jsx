@@ -19,48 +19,47 @@ const Dashboard = () => {
   const calculateTotal = () => {
     let total = 0;
 
-    if (plan === "Start5G") {
-      total =
-        numberOfLines === 1
+    if (Start5Glines) {
+      total +=
+        Start5Glines === 1
           ? 65
-          : numberOfLines === 2
-          ? numberOfLines * 55
-          : numberOfLines === 3
-          ? numberOfLines * 40
-          : numberOfLines === 4
-          ? numberOfLines * 35
-          : numberOfLines * 30;
+          : Start5Glines === 2
+          ? Start5Glines * 55
+          : Start5Glines === 3
+          ? Start5Glines * 40
+          : Start5Glines === 4
+          ? Start5Glines * 35
+          : Start5Glines * 30;
     }
 
-    if (plan === "Plus5G") {
-      total =
-        numberOfLines === 1
+    if (Plus5Glines) {
+      total +=
+        Plus5Glines === 1
           ? 75
-          : numberOfLines === 2
-          ? numberOfLines * 65
-          : numberOfLines === 3
-          ? numberOfLines * 50
-          : numberOfLines === 4
-          ? numberOfLines * 45
-          : numberOfLines * 40;
+          : Plus5Glines === 2
+          ? Plus5Glines * 65
+          : Plus5Glines === 3
+          ? Plus5Glines * 50
+          : Plus5Glines === 4
+          ? Plus5Glines * 45
+          : Plus5Glines * 40;
     }
 
-    if (plan === "Pro5G") {
-      total =
-        numberOfLines === 1
+    if (Pro5Glines) {
+      total +=
+        Pro5Glines === 1
           ? 80
-          : numberOfLines === 2
-          ? numberOfLines * 70
-          : numberOfLines === 3
-          ? numberOfLines * 55
-          : numberOfLines === 4
-          ? numberOfLines * 50
-          : numberOfLines * 45;
+          : Pro5Glines === 2
+          ? Pro5Glines * 70
+          : Pro5Glines === 3
+          ? Pro5Glines * 55
+          : Pro5Glines === 4
+          ? Pro5Glines * 50
+          : Pro5Glines * 45;
     }
 
     total += numberOfTablets * 20;
 
-    console.log(jetPack);
     total += jetPack * 45;
     total += numberOfNewPhones * 10;
     console.log("total:", total, "ohones: ", numberOfNewPhones);
@@ -95,22 +94,44 @@ const Dashboard = () => {
           maxWidth: "600px",
         }}
       >
+        <div>
+          <label
+            style={{
+              fontWeight: "bold",
+              display: "block",
+              marginBottom: "5px",
+            }}
+          >
+            Number of Start 5G lines
+          </label>
+          <QuantityInput setNumberOfLines={setStart5GLines} />
+        </div>
+        <div>
+          <label
+            style={{
+              fontWeight: "bold",
+              display: "block",
+              marginBottom: "5px",
+            }}
+          >
+            Number of Plus 5G lines
+          </label>
+          <QuantityInput setNumberOfLines={setPlus5GLines} />
+        </div>
+        <div>
+          <label
+            style={{
+              fontWeight: "bold",
+              display: "block",
+              marginBottom: "5px",
+            }}
+          >
+            Number of Pro 5G lines
+          </label>
+          <QuantityInput setNumberOfLines={setPro5GLines} />
+        </div>
+
         <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-          <DropDown plan={plan} setPlan={setPlan} />
-
-          <div>
-            <label
-              style={{
-                fontWeight: "bold",
-                display: "block",
-                marginBottom: "5px",
-              }}
-            >
-              Number of Lines
-            </label>
-            <QuantityInput setNumberOfLines={setNumberOfLines} />
-          </div>
-
           <div>
             <label
               style={{
@@ -140,43 +161,6 @@ const Dashboard = () => {
           <div>
             <label>Number of New Phones</label>
             <input onChange={handleNumberOfNewPhoneChange} />
-          </div>
-
-          <div>
-            <label
-              style={{
-                fontWeight: "bold",
-                display: "block",
-                marginBottom: "5px",
-              }}
-            >
-              Number of Start 5G lines
-            </label>
-            <QuantityInput setNumberOfLines={setStart5GLines} />
-          </div>
-          <div>
-            <label
-              style={{
-                fontWeight: "bold",
-                display: "block",
-                marginBottom: "5px",
-              }}
-            >
-              Number of Plus 5G lines
-            </label>
-            <QuantityInput setNumberOfLines={setPlus5GLines} />
-          </div>
-          <div>
-            <label
-              style={{
-                fontWeight: "bold",
-                display: "block",
-                marginBottom: "5px",
-              }}
-            >
-              Number of Pro 5G lines
-            </label>
-            <QuantityInput setNumberOfLines={setPro5GLines} />
           </div>
 
           <button
