@@ -13,11 +13,16 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import VerizonLogo from "../img/logo/Verizon_GlowWordmark_RGB.png";
+import Eminem from "../audio/New Recording 3.m4a";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
+  const clickformusic = () => {
+    const audio = new Audio(Eminem); // Change to your .wav file path
+    audio.play();
+  };
   return (
     <AppBar
       position="static"
@@ -28,7 +33,14 @@ function Navbar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: "center" }}>
-          <img src={VerizonLogo} alt="Verizon Logo" width="180" height="80" />
+          <img
+            src={VerizonLogo}
+            alt="Verizon Logo"
+            width="180"
+            height="80"
+            onClick={clickformusic}
+          />
+
           <Typography
             variant="h6"
             noWrap

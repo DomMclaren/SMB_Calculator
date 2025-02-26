@@ -1,4 +1,6 @@
 import * as React from "react";
+
+import clap from "../audio/99636__tomlija__small-crowd-yelling-yeah.wav";
 import { Unstable_NumberInput as BaseNumberInput } from "@mui/base/Unstable_NumberInput";
 import { styled } from "@mui/system";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -29,12 +31,21 @@ const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
 });
 
 export default function QuantityInput(props) {
+  const theFunNumberChecker = (num) => {
+    if (num === 69) {
+      const audio = new Audio(clap); // Change to your .wav file path
+      audio.play();
+    }
+  };
   return (
     <NumberInput
       aria-label="Quantity Input"
       min={0}
-      max={9999}
-      onChange={(event, val) => props.setNumberOfLines(val)}
+      max={props.total}
+      onChange={(event, val) => {
+        props.setNumberOfLines(val);
+        theFunNumberChecker(val);
+      }}
     />
   );
 }
@@ -73,7 +84,7 @@ const StyledInputRoot = styled("div")(
   justify-content: center;
   align-items: center;
 
-  max-width: 45%;
+  max-width: 70%;
   margin:0;
   pagging:0;
 `
