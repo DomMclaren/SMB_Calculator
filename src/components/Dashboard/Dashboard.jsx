@@ -227,6 +227,7 @@ const Dashboard = () => {
         >
           Calculate
         </button>
+        <button>test</button>
         {foundingFlag ? <Popup /> : <></>}
         <div
           style={{
