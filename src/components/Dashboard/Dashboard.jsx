@@ -41,6 +41,19 @@ const Dashboard = () => {
     setOutputWithTax(total + total * 0.15);
   };
 
+  const handleClearingofInputs = () => {
+    setNumberOfTablets(0);
+    setJetPack(0);
+    setNumberOfNewPhones(0);
+    setCostOfNewPhone(0);
+    setStart5GLines(0);
+    setPlus5GLines(0);
+    setPro5GLines(0);
+    setOutput(0);
+    setOutputWithTax(0);
+    setNumberOfBI(0);
+    setFoundingFlag(false);
+  };
   const handleNumberOfNewPhoneChange = (e) => {
     const numericValue = e.target.value.replace(/[^0-9]/g, "");
     setNumberOfNewPhones(numericValue);
@@ -98,13 +111,20 @@ const Dashboard = () => {
             <label
               style={{
                 fontWeight: "bold",
+                fontSize: "clamp(14px, 2vw, 20px)",
+
                 display: "block",
                 marginBottom: "5px",
+                whiteSpace: "nowrap",
               }}
             >
               Number of Start 5G lines
             </label>
-            <QuantityInput setNumberOfLines={setStart5GLines} total={9999} />
+            <QuantityInput
+              setNumberOfLines={setStart5GLines}
+              value={Start5Glines}
+              total={9999}
+            />
           </div>
           <div>
             <label
@@ -112,11 +132,16 @@ const Dashboard = () => {
                 fontWeight: "bold",
                 display: "block",
                 marginBottom: "5px",
+                fontSize: "clamp(14px, 2vw, 20px)",
               }}
             >
               Tablets
             </label>
-            <QuantityInput setNumberOfLines={setNumberOfTablets} total={9999} />
+            <QuantityInput
+              setNumberOfLines={setNumberOfTablets}
+              value={numberOfTablets}
+              total={9999}
+            />
           </div>
           <div>
             <label
@@ -124,11 +149,16 @@ const Dashboard = () => {
                 fontWeight: "bold",
                 display: "block",
                 marginBottom: "5px",
+                fontSize: "clamp(14px, 2vw, 20px)",
               }}
             >
               Number of Plus 5G lines
             </label>
-            <QuantityInput setNumberOfLines={setPlus5GLines} total={9999} />
+            <QuantityInput
+              setNumberOfLines={setPlus5GLines}
+              value={Plus5Glines}
+              total={9999}
+            />
           </div>
           <div>
             <label
@@ -136,11 +166,16 @@ const Dashboard = () => {
                 fontWeight: "bold",
                 display: "block",
                 marginBottom: "5px",
+                fontSize: "clamp(14px, 2vw, 20px)",
               }}
             >
               Jetpacks
             </label>
-            <QuantityInput setNumberOfLines={setJetPack} total={9999} />
+            <QuantityInput
+              setNumberOfLines={setJetPack}
+              value={jetPack}
+              total={9999}
+            />
           </div>
           <div>
             <label
@@ -148,11 +183,16 @@ const Dashboard = () => {
                 fontWeight: "bold",
                 display: "block",
                 marginBottom: "5px",
+                fontSize: "clamp(14px, 2vw, 20px)",
               }}
             >
               Number of Pro 5G lines
             </label>
-            <QuantityInput setNumberOfLines={setPro5GLines} total={9999} />
+            <QuantityInput
+              setNumberOfLines={setPro5GLines}
+              value={Pro5Glines}
+              total={9999}
+            />
           </div>
           <div>
             <label
@@ -160,11 +200,16 @@ const Dashboard = () => {
                 fontWeight: "bold",
                 display: "block",
                 marginBottom: "5px",
+                fontSize: "clamp(14px, 2vw, 20px)",
               }}
             >
               BI
             </label>
-            <QuantityInput setNumberOfLines={setNumberOfBI} total={6} />
+            <QuantityInput
+              setNumberOfLines={setNumberOfBI}
+              value={numberOfBI}
+              total={6}
+            />
           </div>
           <div>
             <label
@@ -172,11 +217,14 @@ const Dashboard = () => {
                 fontWeight: "bold",
                 display: "block",
                 marginBottom: "5px",
+                whiteSpace: "nowrap",
+                fontSize: "clamp(14px, 2vw, 20px)",
               }}
             >
               Number of New Phones
             </label>
             <input
+              inputMode="numeric"
               onChange={handleNumberOfNewPhoneChange}
               style={{
                 padding: "10px",
@@ -184,6 +232,7 @@ const Dashboard = () => {
                 border: "1px solid #ccc",
                 outline: "none",
                 fontSize: "14px",
+                width: "30%",
               }}
             />
           </div>
@@ -193,18 +242,21 @@ const Dashboard = () => {
                 fontWeight: "bold",
                 display: "block",
                 marginBottom: "5px",
+                fontSize: "clamp(14px, 2vw, 20px)",
               }}
             >
               Cost of New Phones
             </label>
             <input
               onChange={handlePhonePriceChange}
+              inputMode="numeric"
               style={{
                 padding: "10px",
                 borderRadius: "6px",
                 border: "1px solid #ccc",
                 outline: "none",
                 fontSize: "14px",
+                width: "30%",
               }}
             />
           </div>
@@ -227,7 +279,24 @@ const Dashboard = () => {
         >
           Calculate
         </button>
-        <button>test</button>
+        <button
+          onClick={handleClearingofInputs}
+          style={{
+            width: "100%",
+            padding: "10px",
+            background: "#FFFF00",
+            color: "black",
+
+            border: "none",
+            borderRadius: "6px",
+            fontSize: "1rem",
+            cursor: "pointer",
+            transition: "0.3s",
+            marginTop: "15px",
+          }}
+        >
+          Clear Inputs
+        </button>
         {foundingFlag ? <Popup /> : <></>}
         <div
           style={{
@@ -245,6 +314,12 @@ const Dashboard = () => {
           >
             {output}
           </p>
+          <select name="cars" id="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+          </select>
           <p style={{ fontSize: "1rem", color: "#28a745", margin: "4px 0" }}>
             {outputWithTax}
           </p>

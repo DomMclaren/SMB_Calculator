@@ -42,6 +42,7 @@ export default function QuantityInput(props) {
       aria-label="Quantity Input"
       min={0}
       max={props.total}
+      value={props.value}
       onChange={(event, val) => {
         props.setNumberOfLines(val);
         theFunNumberChecker(val);
@@ -109,6 +110,9 @@ const StyledInput = styled("input")(
   min-width: 0;
   width: 4rem;
   text-align: center;
+
+  input-mode: numeric;
+  pattern: "[0-9]*";
 
   &:hover {
     border-color: ${blue[400]};
