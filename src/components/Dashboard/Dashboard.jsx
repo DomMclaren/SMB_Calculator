@@ -53,6 +53,8 @@ const Dashboard = () => {
     setOutputWithTax(0);
     setNumberOfBI(0);
     setFoundingFlag(false);
+    setNumberOfNewPhones(0);
+    setCostOfNewPhone(0);
   };
   const handleNumberOfNewPhoneChange = (e) => {
     const numericValue = e.target.value.replace(/[^0-9]/g, "");
@@ -226,6 +228,7 @@ const Dashboard = () => {
             <input
               inputMode="numeric"
               onChange={handleNumberOfNewPhoneChange}
+              value={numberOfNewPhones}
               style={{
                 padding: "10px",
                 borderRadius: "6px",
@@ -250,6 +253,7 @@ const Dashboard = () => {
             <input
               onChange={handlePhonePriceChange}
               inputMode="numeric"
+              value={costOfNewPhone}
               style={{
                 padding: "10px",
                 borderRadius: "6px",
@@ -314,12 +318,7 @@ const Dashboard = () => {
           >
             {output}
           </p>
-          <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-          </select>
+
           <p style={{ fontSize: "1rem", color: "#28a745", margin: "4px 0" }}>
             {outputWithTax}
           </p>

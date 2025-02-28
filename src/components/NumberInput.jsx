@@ -23,6 +23,13 @@ const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
         decrementButton: {
           children: <RemoveIcon fontSize="small" />,
         },
+        input: {
+          inputMode: "numeric",
+          pattern: "[0-9]*",
+          onFocus: (event) => {
+            event.target.select();
+          },
+        },
       }}
       {...props}
       ref={ref}
