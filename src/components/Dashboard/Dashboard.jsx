@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import QuantityInput from "../NumberInput";
 import Popup from "../Popup";
+import CheckBoxes from "../CheckBoxes";
 
 const Dashboard = () => {
   const [numberOfTablets, setNumberOfTablets] = useState(0);
@@ -14,6 +15,7 @@ const Dashboard = () => {
   const [outputWithTax, setOutputWithTax] = useState(0);
   const [numberOfBI, setNumberOfBI] = useState(0);
   const [foundingFlag, setFoundingFlag] = useState(false);
+  const [insurance, setInsurance] = useState(false);
 
   const calculateTotal = () => {
     let total = 0;
@@ -31,6 +33,19 @@ const Dashboard = () => {
       total += Start5Glines * 30 + Plus5Glines * 40 + Pro5Glines * 45;
     }
 
+    console.log(insurance);
+
+    let totalLines = Start5Glines + Plus5Glines + Pro5Glines;
+    console.log("totoal num of lines", totalLines);
+    if (insurance) {
+      if (totalLines < 3) {
+        total += totalLines * 20;
+      } else if (totalLines >= 3) {
+        total += totalLines * 60;
+      }
+    }
+
+    console.log(total);
     total += numberOfTablets * 20;
     total += jetPack * 45;
     total += numberOfNewPhones * costOfNewPhone;
@@ -262,6 +277,14 @@ const Dashboard = () => {
                 fontSize: "14px",
                 width: "30%",
               }}
+            />
+          </div>
+
+          <div>
+            <CheckBoxes
+              name="Insurance"
+              checked={insurance}
+              setChecked={setInsurance}
             />
           </div>
         </div>
