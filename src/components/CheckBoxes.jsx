@@ -12,6 +12,7 @@ const CheckBoxes = ({ name, checked, setChecked }) => {
         alignItems: "center",
         gap: "10px",
         cursor: "pointer",
+        marginTop: "10px",
       }}
     >
       <input
@@ -35,7 +36,12 @@ const CheckBoxes = ({ name, checked, setChecked }) => {
       />
       <label
         htmlFor={name}
-        style={{ fontSize: "16px", color: "#333", userSelect: "none" }}
+        style={{
+          fontWeight: "bold",
+          display: "block",
+          marginBottom: "5px",
+          fontSize: "clamp(14px, 2vw, 20px)",
+        }}
       >
         {name}
       </label>

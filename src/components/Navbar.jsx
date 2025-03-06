@@ -20,7 +20,10 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
   const clickformusic = () => {
-    const audio = new Audio(Eminem); // Change to your .wav file path
+    const audio = new Audio(Eminem);
+    audio.pause();
+    audio.currentTime = 0;
+
     audio.play();
   };
   return (

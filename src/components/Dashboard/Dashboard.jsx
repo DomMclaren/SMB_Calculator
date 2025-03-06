@@ -16,6 +16,8 @@ const Dashboard = () => {
   const [numberOfBI, setNumberOfBI] = useState(0);
   const [foundingFlag, setFoundingFlag] = useState(false);
   const [insurance, setInsurance] = useState(false);
+  const [totalWithoutAutoPay, setTotalWithoutAutopay] = useState(0);
+  const [totalWithoutAutoPayTax, setTotalWithoutAutopayTax] = useState(0);
 
   const calculateTotal = () => {
     let total = 0;
@@ -36,12 +38,13 @@ const Dashboard = () => {
     console.log(insurance);
 
     let totalLines = Start5Glines + Plus5Glines + Pro5Glines;
+
     console.log("totoal num of lines", totalLines);
     if (insurance) {
       if (totalLines < 3) {
         total += totalLines * 20;
       } else if (totalLines >= 3) {
-        total += totalLines * 60;
+        total += 60;
       }
     }
 
@@ -53,7 +56,9 @@ const Dashboard = () => {
 
     handleDateChecker();
     setOutput(total);
+    setTotalWithoutAutopay(total + totalLines * 5);
     setOutputWithTax(total + total * 0.15);
+    setTotalWithoutAutopayTax((total + totalLines * 5) * 0.15);
   };
 
   const handleClearingofInputs = () => {
@@ -70,6 +75,9 @@ const Dashboard = () => {
     setFoundingFlag(false);
     setNumberOfNewPhones(0);
     setCostOfNewPhone(0);
+    setInsurance(false);
+    setTotalWithoutAutopay(0);
+    setTotalWithoutAutopayTax(0);
   };
   const handleNumberOfNewPhoneChange = (e) => {
     const numericValue = e.target.value.replace(/[^0-9]/g, "");
@@ -105,6 +113,7 @@ const Dashboard = () => {
         width: "100%",
         height: "80vh",
         background: "#f4f4f4",
+        marginTop: "50px",
       }}
     >
       <div
@@ -121,7 +130,7 @@ const Dashboard = () => {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "15px",
+            gap: "25px",
           }}
         >
           <div>
@@ -235,7 +244,7 @@ const Dashboard = () => {
                 display: "block",
                 marginBottom: "5px",
                 whiteSpace: "nowrap",
-                fontSize: "clamp(14px, 2vw, 20px)",
+                fontSize: "clamp(12px, 2vw, 18px)",
               }}
             >
               Number of New Phones
@@ -244,6 +253,7 @@ const Dashboard = () => {
               inputMode="numeric"
               onChange={handleNumberOfNewPhoneChange}
               value={numberOfNewPhones}
+              onFocus={(event) => event.target.select()}
               style={{
                 padding: "10px",
                 borderRadius: "6px",
@@ -251,16 +261,18 @@ const Dashboard = () => {
                 outline: "none",
                 fontSize: "14px",
                 width: "30%",
+                marginLeft: "10%",
               }}
             />
           </div>
+
           <div>
             <label
               style={{
                 fontWeight: "bold",
                 display: "block",
                 marginBottom: "5px",
-                fontSize: "clamp(14px, 2vw, 20px)",
+                fontSize: "clamp(12px, 2vw, 18px)",
               }}
             >
               Cost of New Phones
@@ -269,6 +281,7 @@ const Dashboard = () => {
               onChange={handlePhonePriceChange}
               inputMode="numeric"
               value={costOfNewPhone}
+              onFocus={(event) => event.target.select()}
               style={{
                 padding: "10px",
                 borderRadius: "6px",
@@ -276,13 +289,14 @@ const Dashboard = () => {
                 outline: "none",
                 fontSize: "14px",
                 width: "30%",
+                marginLeft: "13%",
               }}
             />
           </div>
 
           <div>
             <CheckBoxes
-              name="Insurance"
+              name="Business Mobile Protection"
               checked={insurance}
               setChecked={setInsurance}
             />
@@ -335,16 +349,56 @@ const Dashboard = () => {
             textAlign: "center",
           }}
         >
-          <h3 style={{ color: "#007bff", marginBottom: "8px" }}>Total</h3>
-          <p
-            style={{ fontSize: "1.2rem", fontWeight: "bold", margin: "4px 0" }}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "auto auto",
+              gap: "15px",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            {output}
-          </p>
+            <div>
+              <h3 style={{ color: "#007bff", marginBottom: "8px" }}>
+                Auto Pay
+              </h3>
+              <p
+                style={{
+                  fontSize: "1.1rem",
+                  fontWeight: "bold",
+                  margin: "2px 0",
+                }}
+              >
+                {output}
+              </p>
 
-          <p style={{ fontSize: "1rem", color: "#28a745", margin: "4px 0" }}>
-            {outputWithTax}
-          </p>
+              <p
+                style={{ fontSize: "1rem", color: "#28a745", margin: "2px 0" }}
+              >
+                {outputWithTax}
+              </p>
+            </div>
+            <div>
+              <h3 style={{ color: "#007bff", marginBottom: "8px" }}>
+                {" "}
+                No Auto Pay
+              </h3>
+              <p
+                style={{
+                  fontSize: "1.1rem",
+                  fontWeight: "bold",
+                  margin: "2px 0",
+                }}
+              >
+                {totalWithoutAutoPay}
+              </p>
+              <p
+                style={{ fontSize: "1rem", color: "#28a745", margin: "2px 0" }}
+              >
+                {totalWithoutAutoPayTax}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

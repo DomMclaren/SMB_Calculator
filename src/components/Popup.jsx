@@ -11,6 +11,7 @@ export default function Popup({ imageSrc, soundSrc, duration = 6000 }) {
     setVisible(true);
 
     const audio = new Audio(audioFile);
+    audio.pause();
     audio.play();
 
     setTimeout(() => {
