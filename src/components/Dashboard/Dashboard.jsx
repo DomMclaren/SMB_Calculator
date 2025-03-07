@@ -18,6 +18,7 @@ const Dashboard = () => {
   const [insurance, setInsurance] = useState(false);
   const [totalWithoutAutoPay, setTotalWithoutAutopay] = useState(0);
   const [totalWithoutAutoPayTax, setTotalWithoutAutopayTax] = useState(0);
+  const [biCheck, setBIcheck] = useState(false);
 
   const calculateTotal = () => {
     let total = 0;
@@ -52,13 +53,21 @@ const Dashboard = () => {
     total += numberOfTablets * 20;
     total += jetPack * 45;
     total += numberOfNewPhones * costOfNewPhone;
-    total += numberOfBI * 40;
+
+    if (biCheck) {
+      total += numberOfBI * 50;
+    } else {
+      total += numberOfBI * 40;
+    }
+    console.log("---", biCheck);
 
     handleDateChecker();
     setOutput(total);
     setTotalWithoutAutopay(total + totalLines * 5);
     setOutputWithTax(total + total * 0.15);
-    setTotalWithoutAutopayTax((total + totalLines * 5) * 0.15);
+    let temp1 = totalLines * 5;
+    let temp2 = total + temp1 + total * 0.15;
+    setTotalWithoutAutopayTax(temp2);
   };
 
   const handleClearingofInputs = () => {
@@ -293,12 +302,20 @@ const Dashboard = () => {
               }}
             />
           </div>
-
           <div>
             <CheckBoxes
               name="Business Mobile Protection"
               checked={insurance}
               setChecked={setInsurance}
+            />
+          </div>
+
+          <div>
+            <CheckBoxes
+              name="VBizz or whatever"
+              checked={biCheck}
+              setChecked={setBIcheck}
+              disabled={numberOfBI < 1 ? true : false}
             />
           </div>
         </div>
