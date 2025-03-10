@@ -36,11 +36,8 @@ const Dashboard = () => {
       total += Start5Glines * 30 + Plus5Glines * 40 + Pro5Glines * 45;
     }
 
-    console.log(insurance);
-
     let totalLines = Start5Glines + Plus5Glines + Pro5Glines;
 
-    console.log("totoal num of lines", totalLines);
     if (insurance) {
       if (totalLines < 3) {
         total += totalLines * 20;
@@ -49,7 +46,6 @@ const Dashboard = () => {
       }
     }
 
-    console.log(total);
     total += numberOfTablets * 20;
     total += jetPack * 45;
     total += numberOfNewPhones * costOfNewPhone;
@@ -59,7 +55,6 @@ const Dashboard = () => {
     } else {
       total += numberOfBI * 40;
     }
-    console.log("---", biCheck);
 
     handleDateChecker();
     setOutput(total);
@@ -87,6 +82,7 @@ const Dashboard = () => {
     setInsurance(false);
     setTotalWithoutAutopay(0);
     setTotalWithoutAutopayTax(0);
+    setBIcheck(false);
   };
   const handleNumberOfNewPhoneChange = (e) => {
     const numericValue = e.target.value.replace(/[^0-9]/g, "");
@@ -312,7 +308,7 @@ const Dashboard = () => {
 
           <div>
             <CheckBoxes
-              name="VBizz or whatever"
+              name="VBIZ"
               checked={biCheck}
               setChecked={setBIcheck}
               disabled={numberOfBI < 1 ? true : false}
